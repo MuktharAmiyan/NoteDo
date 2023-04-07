@@ -19,6 +19,12 @@ class NoteModel extends Note {
         NoteModelFieldName.noteText: noteText,
         NoteModelFieldName.createdAt: createdAt.toIso8601String(),
       };
+  factory NoteModel.fromEntity(Note note) => NoteModel(
+        id: note.id,
+        title: note.title,
+        noteText: note.noteText,
+        createdAt: note.createdAt,
+      );
 }
 
 class NoteModelFieldName {

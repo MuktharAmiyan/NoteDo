@@ -22,7 +22,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
 
   Future<Database> _initDb() async {
     var dataBasePath = await getDatabasesPath();
-    String path = join(dataBasePath, 'notedo.db');
+    String path = join(dataBasePath, 'notedo.note.db');
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 

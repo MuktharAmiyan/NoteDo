@@ -7,5 +7,5 @@ abstract class NoteRepository {
   Future<Either<Failure, Iterable<Note>>> getAllNotes();
   Future<Either<Failure, Unit>> addNote(NoteModel note);
   Future<Either<Failure, Unit>> editNote(NoteModel note);
-  Future<Either<Failure, Unit>> deleteNote(Note note);
+  Future<Either<Failure, Unit>> deleteNote(NoteModel note);
 }

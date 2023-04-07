@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notedo/feature/note/presentation/bloc/bloc/note_bloc.dart';
 import 'package:notedo/feature/setting/data/model/app_theme_model.dart';
+import 'package:notedo/feature/todo/domain/entities/to_do.dart';
+import 'package:notedo/feature/todo/presentation/bloc/to_do/to_do_bloc.dart';
 import 'core/route/go_router_provider.dart';
 import 'core/service_locator.dart';
 import 'feature/setting/presentation/cubit/theme/theme_cubit.dart';
@@ -18,6 +20,10 @@ class NoteDoApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<NoteBloc>()..add(GetAllNoteEvenet()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              getIt<ToDoBloc>()..add(const GetToDosEvent(ToDoType.all)),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(

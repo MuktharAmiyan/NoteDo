@@ -22,7 +22,7 @@ class NoteRepositoryImpl implements NoteRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteNote(Note note) async {
+  Future<Either<Failure, Unit>> deleteNote(NoteModel note) async {
     try {
       await noteLocalDataSource.deleteNote(note);
       return right(unit);

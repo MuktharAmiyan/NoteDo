@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:notedo/feature/note/domain/entities/note.dart';
-
 import 'add_note_card.dart';
 import 'note_card_widget.dart';
 
@@ -23,6 +21,7 @@ class NoteGridWidget extends StatelessWidget {
             return const AddNoteCard();
           } else {
             final note = notes.elementAt(index - 1);
+
             return NoteCardWidget(
               note: note,
             );

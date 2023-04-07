@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notedo/core/usecases/usecase.dart';
-import 'package:notedo/feature/note/data/model/note_model.dart';
 import 'package:notedo/feature/note/domain/entities/note.dart';
 import 'package:notedo/feature/note/domain/use_case/add_note_usecase.dart';
 import 'package:notedo/feature/note/domain/use_case/delete_note_usecase.dart';
@@ -33,11 +32,11 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       );
     });
     on<AddNoteEvenet>((event, emit) async {
-      final noteModel = NoteModel(
+      final note = Note(
           title: event.title,
           noteText: event.noteText,
           createdAt: DateTime.now());
-      final res = await addNoteUsecase.call(noteModel);
+      final res = await addNoteUsecase.call(note);
       final notes = await getAllNoteUsecase.call(NoParams());
       emit(
         res.fold(
@@ -64,13 +63,13 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     });
 
     on<EditNoteEvenet>((event, emit) async {
-      final noteModel = NoteModel(
+      final note = Note(
         id: event.note.id,
         title: event.title,
         noteText: event.noteText,
         createdAt: DateTime.now(),
       );
-      final res = await editNoteUsecase.call(noteModel);
+      final res = await editNoteUsecase.call(note);
       final notes = await getAllNoteUsecase.call(NoParams());
       emit(
         res.fold(
