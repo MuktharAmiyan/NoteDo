@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notedo/core/extension/date_formate.dart';
-
 import 'package:notedo/feature/todo/domain/entities/to_do.dart';
 import 'package:notedo/feature/todo/presentation/bloc/to_do/to_do_bloc.dart';
 import 'package:notedo/feature/todo/presentation/bloc/to_do_type/to_do_type_cubit.dart';
