@@ -23,6 +23,13 @@ class NoteCardWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: Text(
+                  note.createdAt.format,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              ),
               Text(
                 note.title,
                 maxLines: 1,
@@ -43,13 +50,6 @@ class NoteCardWidget extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Text(
-                  note.createdAt.format,
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-              )
             ],
           ),
         ),

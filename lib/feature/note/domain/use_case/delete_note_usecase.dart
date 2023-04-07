@@ -5,13 +5,13 @@ import 'package:notedo/feature/note/domain/entities/note.dart';
 
 import '../repository/note_repository.dart';
 
-class DeleteNoteUsecase extends Usecase<None, Note> {
+class DeleteNoteUsecase extends Usecase<Unit, Note> {
   final NoteRepository noteRepository;
 
   DeleteNoteUsecase(this.noteRepository);
 
   @override
-  Future<Either<Failure, None>> call(Note params) {
+  Future<Either<Failure, Unit>> call(Note params) {
     return noteRepository.deleteNote(params);
   }
 }

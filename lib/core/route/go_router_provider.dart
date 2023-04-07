@@ -6,7 +6,6 @@ import 'package:notedo/feature/note/domain/entities/note.dart';
 import 'package:notedo/feature/note/presentation/ui/add_note_screen.dart';
 import 'package:notedo/feature/note/presentation/ui/note_screen.dart';
 import 'package:notedo/feature/note/presentation/ui/single_note_screen.dart';
-import 'package:notedo/feature/note/presentation/widgets/add_note_card.dart';
 import 'package:notedo/feature/setting/presentation/ui/setting_screen.dart';
 import 'package:notedo/feature/todo/presentation/ui/to_do_screen.dart';
 

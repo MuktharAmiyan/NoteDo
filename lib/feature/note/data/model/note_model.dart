@@ -2,7 +2,7 @@ import 'package:notedo/feature/note/domain/entities/note.dart';
 
 class NoteModel extends Note {
   const NoteModel(
-      {required super.id,
+      {super.id,
       required super.title,
       required super.noteText,
       required super.createdAt});
@@ -11,7 +11,7 @@ class NoteModel extends Note {
         id: json[NoteModelFieldName.id],
         title: json[NoteModelFieldName.title],
         noteText: json[NoteModelFieldName.noteText],
-        createdAt: json[NoteModelFieldName.createdAt] as DateTime,
+        createdAt: DateTime.parse(json[NoteModelFieldName.createdAt] as String),
       );
   Map<String, dynamic> toJson() => {
         NoteModelFieldName.id: id,
@@ -23,6 +23,7 @@ class NoteModel extends Note {
 
 class NoteModelFieldName {
   NoteModelFieldName._();
+  static const tableName = 'note';
   static const id = 'id';
   static const title = 'title';
   static const noteText = 'noteText';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notedo/feature/note/presentation/bloc/bloc/note_bloc.dart';
 import 'package:notedo/feature/setting/data/model/app_theme_model.dart';
 import 'core/route/go_router_provider.dart';
 import 'core/service_locator.dart';
@@ -10,8 +11,15 @@ class NoteDoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ThemeCubit>()..initTheme(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<ThemeCubit>()..initTheme(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<NoteBloc>()..add(GetAllNoteEvenet()),
+        ),
+      ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           final route = getIt<GoRouterProvider>();

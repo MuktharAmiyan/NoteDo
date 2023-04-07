@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notedo/feature/note/presentation/bloc/bloc/note_bloc.dart';
 
 class AddNoteScreen extends StatefulWidget {
   const AddNoteScreen({
@@ -80,5 +82,11 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
   void _addNote() {
     log('Note Addddd');
+    context.read<NoteBloc>().add(
+          AddNoteEvenet(
+            title: _titleTextEditingController.text.trim(),
+            noteText: _noteTextTextEditingController.text.trim(),
+          ),
+        );
   }
 }
