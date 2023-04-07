@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notedo/feature/note/presentation/bloc/bloc/note_bloc.dart';
 import 'package:notedo/feature/todo/presentation/bloc/to_do/to_do_bloc.dart';
 import 'package:notedo/feature/todo/presentation/bloc/to_do_type/to_do_type_cubit.dart';
 
