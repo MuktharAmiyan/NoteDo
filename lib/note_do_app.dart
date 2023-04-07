@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notedo/feature/setting/data/model/app_theme_model.dart';
-
 import 'core/route/go_router_provider.dart';
 import 'core/service_locator.dart';
 import 'feature/setting/presentation/cubit/theme/theme_cubit.dart';
