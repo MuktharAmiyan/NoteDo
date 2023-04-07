@@ -17,40 +17,43 @@ class NoteCardWidget extends StatelessWidget {
       onTap: () {
         context.pushNamed(RouteName.signleNote, extra: note);
       },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Text(
-                  note.createdAt.format,
-                  style: Theme.of(context).textTheme.labelMedium,
+      child: Hero(
+        tag: note.id ?? 'note',
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    note.createdAt.format,
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
                 ),
-              ),
-              Text(
-                note.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-              Divider(
-                color: Theme.of(context).colorScheme.background,
-              ),
-              Flexible(
-                child: Text(
-                  note.noteText,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                Text(
+                  note.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-            ],
+                Divider(
+                  color: Theme.of(context).colorScheme.background,
+                ),
+                Flexible(
+                  child: Text(
+                    note.noteText,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+              ],
+            ),
           ),
         ),
       ),

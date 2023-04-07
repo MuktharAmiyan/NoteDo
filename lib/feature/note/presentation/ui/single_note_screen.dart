@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notedo/core/dialog/delete_dialog.dart';
@@ -7,6 +5,7 @@ import 'package:notedo/core/dialog/dialog_model.dart';
 import 'package:notedo/core/extension/date_formate.dart';
 import 'package:notedo/core/service_locator.dart';
 import 'package:notedo/feature/note/domain/entities/note.dart';
+import 'package:notedo/feature/note/presentation/bloc/bloc/note_bloc.dart';
 import 'package:notedo/feature/note/presentation/bloc/note_or_edit/note_or_edit_cubit.dart';
 
 class SignleNoteScreen extends StatefulWidget {
@@ -56,50 +55,55 @@ class _SignleNoteScreenState extends State<SignleNoteScreen> {
                         onPressed: () async {
                           final res = await DeleteDialog('Note').show(context);
                           if (res == true) {
-                            _deleteNote();
+                            _deleteNote().then((_) {
+                              Navigator.pop(context);
+                            });
                           }
                         },
                         icon: const Icon(Icons.delete_outline),
                       ),
                     ],
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        widget.note.createdAt.format,
-                        style: Theme.of(context).textTheme.labelMedium,
+            body: Hero(
+              tag: widget.note.id ?? 'note',
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          widget.note.createdAt.format,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    TextField(
-                      readOnly: !isEdit,
-                      maxLines: null,
-                      controller: _titleTextEditingController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
+                      const SizedBox(
+                        height: 12,
                       ),
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    TextField(
-                      readOnly: !isEdit,
-                      maxLines: null,
-                      controller: _noteTextTextEditingController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
+                      TextField(
+                        readOnly: !isEdit,
+                        maxLines: null,
+                        controller: _titleTextEditingController,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      TextField(
+                        readOnly: !isEdit,
+                        maxLines: null,
+                        controller: _noteTextTextEditingController,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -122,10 +126,18 @@ class _SignleNoteScreenState extends State<SignleNoteScreen> {
   }
 
   void _saveEditedNote() {
-    log('Save Note');
+    context.read<NoteBloc>().add(
+          EditNoteEvenet(
+            note: widget.note,
+            title: _titleTextEditingController.text.trim(),
+            noteText: _noteTextTextEditingController.text.trim(),
+          ),
+        );
   }
 
-  void _deleteNote() {
-    log('Delete Note');
+  Future<void> _deleteNote() async {
+    context.read<NoteBloc>().add(
+          DeleteNoteEvenet(note: widget.note),
+        );
   }
 }

@@ -13,19 +13,22 @@ class AddNoteCard extends StatelessWidget {
       onTap: () {
         context.pushNamed(RouteName.addNote);
       },
-      child: Card(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'ADD NOTE  ',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            const Icon(Icons.edit)
-          ],
+      child: Hero(
+        tag: 'add-note',
+        child: Card(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'ADD NOTE  ',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              const Icon(Icons.edit)
+            ],
+          ),
         ),
       ),
     );

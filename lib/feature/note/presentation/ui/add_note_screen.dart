@@ -37,33 +37,36 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
       appBar: AppBar(
         title: const Text('Add Note'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextField(
-                maxLines: null,
-                controller: _titleTextEditingController,
-                decoration: const InputDecoration(
-                  hintText: 'Title',
-                  border: InputBorder.none,
+      body: Hero(
+        tag: 'add-note',
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  maxLines: null,
+                  controller: _titleTextEditingController,
+                  decoration: const InputDecoration(
+                    hintText: 'Title',
+                    border: InputBorder.none,
+                  ),
+                  style: Theme.of(context).textTheme.displaySmall,
                 ),
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              TextField(
-                maxLines: null,
-                controller: _noteTextTextEditingController,
-                decoration: const InputDecoration(
-                  hintText: 'Note',
-                  border: InputBorder.none,
+                const SizedBox(
+                  height: 12,
                 ),
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ],
+                TextField(
+                  maxLines: null,
+                  controller: _noteTextTextEditingController,
+                  decoration: const InputDecoration(
+                    hintText: 'Note',
+                    border: InputBorder.none,
+                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
           ),
         ),
       ),
