@@ -5,8 +5,14 @@ class ToDoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('ToDOSS'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('To Do'),
+        scrolledUnderElevation: 0,
+      ),
+      body: const Center(
+        child: Text('ToDOSS'),
+      ),
     );
   }
 }

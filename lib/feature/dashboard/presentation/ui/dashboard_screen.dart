@@ -25,16 +25,10 @@ class DashboardScreen extends StatelessWidget {
       child: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (_, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text(state.appBarTitle),
-              scrolledUnderElevation: 0,
-            ),
             body: Row(
               children: [
                 if (!isMobile) ...[
-                  NavigationRailWidget(
-                    onTapAddButton: () => _onTapAddButton(state),
-                  ),
+                  const NavigationRailWidget(),
                 ],
                 Expanded(
                   child: body,
@@ -42,32 +36,9 @@ class DashboardScreen extends StatelessWidget {
               ],
             ),
             bottomNavigationBar: isMobile ? const NavigationBarWidget() : null,
-            // CHECKING FOR MOBILE AND PAGE INDEX IS NOT SETTING FOR SHOWING ADD FLOTING ACTION BUTTON
-            floatingActionButton: isMobile && state.pageIndex != 2
-                ? FloatingActionButton(
-                    elevation: 0,
-                    onPressed: () => _onTapAddButton(state),
-                    child: const Icon(Icons.edit_outlined),
-                  )
-                : null,
           );
         },
       ),
     );
-  }
-
-  void _onTapAddButton(DashboardState state) {
-    switch (state.pageIndex) {
-      case 0:
-        //TODO:GOTO  ADD NOTE ROUTE
-        print('ADD NOTE');
-        break;
-      case 1:
-        //TODO:GOTO ADD TODO ROUTE
-        print('ADD TODO');
-        break;
-      default:
-        throw Exception('SOmthing went Wrong');
-    }
   }
 }

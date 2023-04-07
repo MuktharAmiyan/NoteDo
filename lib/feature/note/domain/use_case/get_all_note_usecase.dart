@@ -1,5 +1,6 @@
+import 'package:fpdart/fpdart.dart';
 import 'package:notedo/core/error/failure.dart';
-import 'package:fpdart/src/either.dart';
+
 import 'package:notedo/core/usecases/usecase.dart';
 import 'package:notedo/feature/note/domain/repository/note_repository.dart';
 

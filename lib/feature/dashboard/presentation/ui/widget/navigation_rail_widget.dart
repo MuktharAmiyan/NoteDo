@@ -6,10 +6,7 @@ import 'package:notedo/feature/dashboard/presentation/cubit/dashboard_cubit.dart
 import 'package:notedo/feature/dashboard/presentation/cubit/dashboard_state.dart';
 
 class NavigationRailWidget extends StatelessWidget {
-  final VoidCallback onTapAddButton;
-
   const NavigationRailWidget({
-    required this.onTapAddButton,
     super.key,
   });
 
@@ -21,20 +18,9 @@ class NavigationRailWidget extends StatelessWidget {
           onDestinationSelected: (index) =>
               _onDestinationSelected(context, index),
           labelType: NavigationRailLabelType.all,
-          leading: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.menu),
-              ),
-              //CHECKING FOR THE PAGE INDEX IS NOT SETTINGS
-              if (state.pageIndex != 2)
-                FloatingActionButton(
-                  elevation: 0,
-                  onPressed: onTapAddButton,
-                  child: const Icon(Icons.edit_outlined),
-                ),
-            ],
+          leading: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(Icons.menu),
           ),
           destinations: const [
             NavigationRailDestination(

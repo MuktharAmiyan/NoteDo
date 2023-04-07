@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:notedo/core/route/go_router_provider.dart';
+import 'package:notedo/feature/note/presentation/bloc/note_or_edit/note_or_edit_cubit.dart';
 import 'package:notedo/feature/setting/data/data_source/setting_local_data_source.dart';
 import 'package:notedo/feature/setting/data/repository/setting_repository_impl.dart';
 import 'package:notedo/feature/setting/domain/repository/settings_repository.dart';
@@ -39,4 +40,12 @@ Future<void> serviceLocatorInit() async {
   //EXTERNAL
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerLazySingleton(() => sharedPreferences);
+
+  //Note
+
+  //BLOC OR CUBIT
+
+  getIt.registerFactory(
+    () => NoteOrEditCubit(),
+  );
 }

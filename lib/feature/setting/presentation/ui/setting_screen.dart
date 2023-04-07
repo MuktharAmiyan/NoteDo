@@ -7,10 +7,16 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: const [
-        ThemeSettingTileWidget(),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+        scrolledUnderElevation: 0,
+      ),
+      body: ListView(
+        children: const [
+          ThemeSettingTileWidget(),
+        ],
+      ),
     );
   }
 }

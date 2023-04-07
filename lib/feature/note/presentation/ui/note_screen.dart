@@ -6,10 +6,20 @@ class NoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        NoteGridWidget(),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Note'),
+        scrolledUnderElevation: 0,
+      ),
+      body: Column(
+        children: const [
+          NoteGridWidget(),
+        ],
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: const Icon(Icons.edit),
+      // ),
     );
   }
 }
